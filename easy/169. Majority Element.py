@@ -25,5 +25,19 @@ class Solution(object):
                     return nums[i]
             
     
-    
+# better answer, O(n)
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        set_ = set(nums)
+        dict_ = {}
+        for i in set_:
+            dict_[str(i)] = 0
+        
+        for i in nums:
+            dict_[str(i)] += 1
+        
+            if dict_[str(i)] > len(nums) / 2:
+                return i
+
+
     
