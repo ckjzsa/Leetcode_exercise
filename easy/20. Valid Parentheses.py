@@ -10,8 +10,8 @@ class Solution(object):
             s = s.replace('()', '')
         return s == ''
 
-    # Stack based solution
-    class Solution(object):
+# Stack based solution
+class Solution(object):
     def isValid(self, s):
         """
         :type s: str
