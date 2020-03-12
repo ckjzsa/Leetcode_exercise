@@ -1,40 +1,25 @@
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
-        prefix = ""
-        if not strs:
-            return prefix
+        if len(strs) == 0:
+            return ""
+
+        string = ""
+        minimum = len(strs[0])
+
+        for word in strs:
+            if len(word) < minimum:
+                minimum = len(word)
         
-        elif len(strs) == 1:
-            return strs[0]
-
-        else:
-            # 先求出最小长度
-            min_lenth = len(strs[0])
-            for item in strs:
-                if len(item) < min_lenth:
-                    min_lenth = len(item)
-
-            count = 0
-            alphabet = []
-            
-            # 遍历所有单词的最小长度个字母并保存
-            while count < min_lenth:
-                for word in strs:
-                    alphabet.append(word[count])
+        count = 0
+        for i in range(minimum):
+            for word in strs:
+                if strs[0][i] == word[i]:
+                    count += 1
                 
-                count += 1
-            
-            # 求解公共部分
-            count = 1
-            for i in range(len(alphabet) - 1):
-                if alphabet[i] == alphabet[i+1] and count < len(strs) - 1:
-                    count += 1
-                elif alphabet[i] == alphabet[i+1] and count == len(strs) - 1:
-                    prefix += alphabet[i]
-                    count = 0
-                elif alphabet[i] != alphabet[i+1] and count == 0:
-                    count += 1
-                else:
-                    break
-            
-            return prefix
+            if count == len(strs):
+                string += strs[0][i]
+            else:
+                break
+            count = 0
+
+        return string 
